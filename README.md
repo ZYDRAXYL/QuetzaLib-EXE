@@ -22,10 +22,20 @@ fix would have to be made twice.
 
 ## Status
 
-The chain wiring is in place; the Electron shell is **not built yet**.
-`node tools/chain-propagate.mjs` in APP reports the `app-source` edge as
-unimplemented and skips it rather than writing an empty change. Implementing it
-means adding an `app-source.json` pin here and the handler in APP.
+The Electron shell is **scaffolded**: frameless window with a DraconDex-style
+title bar (`electron/shell/`), the Flutter web build served from `app://web/`
+in an iframe, and `.github/workflows/build-electron.yml` that builds APP's web
+output and packages the Windows exe. The `app-source` pin/handler in the chain
+is still not implemented — CI builds APP's `main` (or the `app_ref` input).
+
+```bash
+cd electron
+npm install
+npm run web -- ../../QuetzaLib-APP/build/web   # after `flutter build web` in APP
+npm start
+npm test                                       # app:// path-resolver tests
+npm run build:exe                              # portable exe (Windows)
+```
 
 ## Releases
 

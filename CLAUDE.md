@@ -29,9 +29,12 @@ So:
 
 ## Status
 
-The chain wiring is in place; the Electron shell is **not built yet**. The
-`app-source` handler in `tools/chain-propagate.mjs` reports that and skips
-rather than writing an empty change.
+The Electron shell is scaffolded in `electron/` (modelled on DraconDex-EXE:
+`frame:false` window, custom title bar with DraconDex tokens, same
+`window:*` IPC names). The Flutter build is served from `app://web/` and
+shown in an iframe under the title bar; `electron/web/` is gitignored and
+filled by `npm run web -- <APP>/build/web` or by CI. The `app-source` handler
+in `tools/chain-propagate.mjs` is still unimplemented and skips.
 
 ## Mirrored files — do not edit here
 
